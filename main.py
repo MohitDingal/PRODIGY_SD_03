@@ -19,13 +19,13 @@ def register():
     contact1 = contact.get()
     # applying empty validation
     if fname1 == '' or lname1 == '' or email1 == '' or contact1 == '':
-        tkMessageBox.showinfo("Warning", "fill the empty field!!!")
+        tkMessageBox.showinfo("Warning", "Cannot accept empty fields")
     else:
         # execute query
         conn.execute('INSERT INTO REGISTRATION (FNAME,LNAME,EMAIL,CONTACT) \
                  VALUES (?,?,?,?)', (fname1, lname1,email1, contact1));
         conn.commit()
-        tkMessageBox.showinfo("Message", "Stored successfully")
+        tkMessageBox.showinfo("Message", "Contact has been stored")
         # refresh table data
         conn.close()
 def createpage():
@@ -34,17 +34,17 @@ def createpage():
     email.set("")
     contact.set("")
     create_contact = Frame(main_body)
-    create_contact.pack(fill = BOTH,expand = True)
-    Label(create_contact, text="First Name  ", font=("Arial", 12), bg="#15244C", fg="white").pack(side=TOP)
-    Entry(create_contact, font=("Arial", 10, "bold"), textvariable=fname).pack(side=TOP, padx=10, fill=X)
-    Label(create_contact, text="Last Name ", font=("Arial", 12), bg="#15244C", fg="white").pack(side=TOP)
-    Entry(create_contact, font=("Arial", 10, "bold"), textvariable=lname).pack(side=TOP, padx=10, fill=X)
-    Label(create_contact, text="Email ", font=("Arial", 12), bg="#15244C", fg="white").pack(side=TOP)
-    Entry(create_contact, font=("Arial", 10, "bold"), textvariable=email).pack(side=TOP, padx=10, fill=X)
-    Label(create_contact, text="Contact ", font=("Arial", 12), bg="#15244C", fg="white").pack(side=TOP)
-    Entry(create_contact, font=("Arial", 10, "bold"), textvariable=contact).pack(side=TOP, padx=10, fill=X)
-    Button(create_contact, text="Submit", font=("Arial", 10, "bold"), command=register, bg="#15244C", fg="white").pack(side=TOP,padx=10,pady=5,fill=X)
-
+    Label(create_contact,text = "Please add the Contact details",font =("Arial",20,"bold"),fg = "black").grid(row = 0,column=0,columnspan =2,sticky = "news",padx = 10,pady = 10)
+    Label(create_contact, text="First Name  ", font=("Arial", 12,"bold"),  fg="black").grid(row =1,column=0,padx=10,pady=10,sticky = "news")
+    Entry(create_contact, font=("Arial", 12, "bold"), textvariable=fname).grid(row = 1,column =1,padx=10,pady=10,sticky = "news")
+    Label(create_contact, text="Last Name ", font=("Arial", 12,"bold"),  fg="black").grid(row = 2,column =0,padx=10,pady=10,sticky = "news")
+    Entry(create_contact, font=("Arial", 12, "bold"), textvariable=lname).grid(row = 2,column =1,padx=10,pady=10,sticky = "news")
+    Label(create_contact, text="Email ", font=("Arial", 12,"bold"),  fg="black").grid(row = 3,column =0,padx=10,pady=10,sticky = "news")
+    Entry(create_contact, font=("Arial", 12, "bold"), textvariable=email).grid(row = 3,column =1,padx=10,pady=10,sticky = "news")
+    Label(create_contact, text="Contact ", font=("Arial", 12,"bold"), fg="black").grid(row = 4,column =0,padx=10,pady=10,sticky = "news")
+    Entry(create_contact, font=("Arial", 12, "bold"), textvariable=contact).grid(row = 4,column =1,padx=10,pady=10,sticky = "news")
+    Button(create_contact, text="Submit", font=("Arial", 12, "bold"), command=register, bg="blue", fg="white").grid(row = 5,column =0,columnspan =2,padx=10,pady=10,sticky = "news")
+    create_contact.pack()
 def DisplayData():
     scrollbarx = Scrollbar(main_body, orient=HORIZONTAL)
     scrollbary = Scrollbar(main_body, orient=VERTICAL)
@@ -86,26 +86,36 @@ def DisplayData():
 
 def updatepage():
     create_contact = Frame(main_body)
-    create_contact.pack(fill = BOTH,expand = True)
-    Label(create_contact, text="First Name  ", font=("Arial", 12), bg="#15244C", fg="white").pack(side=TOP)
-    Entry(create_contact, font=("Arial", 10, "bold"), textvariable=fname).pack(side=TOP, padx=10, fill=X)
-    Label(create_contact, text="Last Name ", font=("Arial", 12), bg="#15244C", fg="white").pack(side=TOP)
-    Entry(create_contact, font=("Arial", 10, "bold"), textvariable=lname).pack(side=TOP, padx=10, fill=X)
-    Label(create_contact, text="Email ", font=("Arial", 12), bg="#15244C", fg="white").pack(side=TOP)
-    Entry(create_contact, font=("Arial", 10, "bold"), textvariable=email).pack(side=TOP, padx=10, fill=X)
-    Label(create_contact, text="Contact ", font=("Arial", 12), bg="#15244C", fg="white").pack(side=TOP)
-    Entry(create_contact, font=("Arial", 10, "bold"), textvariable=contact).pack(side=TOP, padx=10, fill=X)
-    Button(create_contact, text="Update", font=("Arial", 10, "bold"), command=lambda:update(tree), bg="#15244C", fg="white").pack(
-        side=TOP, padx=10, pady=5, fill=X)
-    selectitem = Button(create_contact,text = "Select item",command = lambda:selector(tree))
-    selectitem.pack()
+    Label(create_contact, text="First Name  ", font=("Arial", 12, "bold"), fg="black").grid(row=0, column=0, padx=10,
+                                                                                            pady=10, sticky="news")
+    Entry(create_contact, font=("Arial", 12, "bold"), textvariable=fname).grid(row=0, column=1, padx=10, pady=10,
+                                                                               sticky="news")
+    Label(create_contact, text="Last Name ", font=("Arial", 12, "bold"), fg="black").grid(row=1, column=0, padx=10,
+                                                                                          pady=10, sticky="news")
+    Entry(create_contact, font=("Arial", 12, "bold"), textvariable=lname).grid(row=1, column=1, padx=10, pady=10,
+                                                                               sticky="news")
+    Label(create_contact, text="Email ", font=("Arial", 12, "bold"), fg="black").grid(row=2, column=0, padx=10, pady=10,
+                                                                                      sticky="news")
+    Entry(create_contact, font=("Arial", 12, "bold"), textvariable=email).grid(row=2, column=1, padx=10, pady=10,
+                                                                               sticky="news")
+    Label(create_contact, text="Contact ", font=("Arial", 12, "bold"), fg="black").grid(row=3, column=0, padx=10,
+                                                                                        pady=10, sticky="news")
+    Entry(create_contact, font=("Arial", 12, "bold"), textvariable=contact).grid(row=3, column=1, padx=10, pady=10,
+                                                                                 sticky="news")
+    Button(create_contact, text="Update", font=("Arial", 12, "bold"), command=lambda:update(tree), bg="blue", fg="white").grid(
+        row=4, column=0, columnspan=2, padx=10, pady=10, sticky="news")
+
+    selectitem = Button(create_contact,text = "Select item",font=("Arial", 12, "bold"),command = lambda:selector(tree),bg="red", fg="white")
+    selectitem.grid(row=5,column=0,columnspan = 2,padx=10,pady=10,sticky = "news")
+    create_contact.pack()
     fname.set("")
     lname.set("")
     email.set("")
     contact.set("")
-    scrollbarx = Scrollbar(create_contact, orient=HORIZONTAL)
-    scrollbary = Scrollbar(create_contact, orient=VERTICAL)
-    tree = ttk.Treeview(create_contact, columns=("Student Id", "First Name", "Last Name", "Email", "Contact"),
+    show_date = Frame(main_body)
+    scrollbarx = Scrollbar(show_date, orient=HORIZONTAL)
+    scrollbary = Scrollbar(show_date, orient=VERTICAL)
+    tree = ttk.Treeview(show_date, columns=("Student Id", "First Name", "Last Name", "Email", "Contact"),
                         selectmode="extended", height=100, yscrollcommand=scrollbary.set, xscrollcommand=scrollbarx.set)
     scrollbary.config(command=tree.yview)
     scrollbary.pack(side=RIGHT, fill=Y)
@@ -137,7 +147,7 @@ def updatepage():
     for data in fetch:
         tree.insert('', 'end', values=(data))
 
-
+    show_date.pack()
     cursor.close()
     conn.close()
 
@@ -176,8 +186,8 @@ def update(tree):
 def deletepage():
     create_contact = Frame(main_body)
     create_contact.pack(fill=BOTH, expand=True)
-    selectitem = Button(create_contact, text="Delete Selected Item", command=lambda: deletor(tree))
-    selectitem.pack()
+    selectitem = Button(create_contact, text="Delete Selected Item", command=lambda: deletor(tree),fg = "white",bg = "blue",font = ("Arial bold",12))
+    selectitem.pack(padx=10,pady =10)
     scrollbarx = Scrollbar(create_contact, orient=HORIZONTAL)
     scrollbary = Scrollbar(create_contact, orient=VERTICAL)
     tree = ttk.Treeview(create_contact, columns=("Student Id", "First Name", "Last Name", "Email", "Contact"),
@@ -262,25 +272,25 @@ def master():
 
     create_contact_indicator = Label(menu_slider,bg = "red")
     create_contact_indicator.place(y = 40,x=10,width =230,height = 2)
-    create_contact_button = Button(menu_slider,text = "Create",font = ("Arial",13),bd = 0, fg ="red",activebackground="red",command = lambda: switch(indicator = create_contact_indicator,page = createpage))
+    create_contact_button = Button(menu_slider,text = "Create",font = ("Arial",13,"bold"),bd = 0, fg ="red",activebackground="red",command = lambda: switch(indicator = create_contact_indicator,page = createpage))
     create_contact_button.place(y = 0,x=0,width = 250, height = 40)
 
-    all_button = Button(menu_slider,text = "All",font = ("Arial",13),bd = 0, fg ="red",activebackground="red",command = lambda: switch(indicator = all_indicator,page = DisplayData))
+    all_button = Button(menu_slider,text = "All",font = ("Arial",13,"bold"),bd = 0, fg ="red",activebackground="red",command = lambda: switch(indicator = all_indicator,page = DisplayData))
     all_button.place(y = 0,x=250,width = 250, height = 40)
     all_indicator = Label(menu_slider)
     all_indicator.place(y = 40,x=260,width =230,height = 2)
 
-    edit_button = Button(menu_slider,text = "Edit",font = ("Arial",13),bd = 0, fg ="red",activebackground="red",command = lambda: switch(indicator = edit_indicator,page = updatepage))
+    edit_button = Button(menu_slider,text = "Edit",font = ("Arial",13,"bold"),bd = 0, fg ="red",activebackground="red",command = lambda: switch(indicator = edit_indicator,page = updatepage))
     edit_button.place(y = 0,x=500,width = 250, height = 40)
     edit_indicator = Label(menu_slider)
     edit_indicator.place(y = 40,x=510,width =230,height = 2)
 
-    delete_button = Button(menu_slider,text = "Delete",font = ("Arial",13),bd = 0, fg ="red",activebackground="red",command = lambda: switch(indicator = delete_indicator,page = deletepage))
+    delete_button = Button(menu_slider,text = "Delete",font = ("Arial",13,"bold"),bd = 0, fg ="red",activebackground="red",command = lambda: switch(indicator = delete_indicator,page = deletepage))
     delete_button.place(y = 0,x=750,width = 250, height = 40)
     delete_indicator = Label(menu_slider)
     delete_indicator.place(y = 40,x=760,width =230,height = 2)
     global main_body
-    main_body = Frame(root)
+    main_body = Frame(root,bg = "grey")
 
     main_body.pack(fill = BOTH,expand = True,padx = 5,pady = 5)
 
